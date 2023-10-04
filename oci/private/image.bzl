@@ -85,11 +85,6 @@ If `group/gid` is not specified, the default group and supplementary groups of t
     "_empty_tar": attr.label(default = "empty.tar", allow_single_file = True),
 }
 
-def _format_string_to_string_tuple(kv):
-    if type(kv) != "tuple":
-        fail("argument `kv` must be a tuple.")
-    return "%s=%s" % kv
-
 def _platform_str(os, arch, variant = None):
     parts = [os, arch]
     if variant:
