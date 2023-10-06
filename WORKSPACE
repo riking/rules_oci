@@ -94,3 +94,23 @@ new_local_repository(
 load(":fetch.bzl", "fetch_images")
 
 fetch_images()
+
+
+load("//experimental/apt:packages.bzl", "debian_package_index")
+
+debian_package_index(
+    name = "bookworm",
+    architectures = [ "arm64", "amd64" ],
+    dists = [ "bookworm" ],
+    packages = {
+        "libarchive-tools": "3.6.2-1"
+    },
+    package_lock = {
+        "bookworm/arm64":"sha256-mecDS6gA+bvDtjW0MdgiT1eiDEOPbngXQZ/DkJliT8s=",
+        "bookworm/amd64":"sha256-5ieJGrbUsmzdNm8ubzHXZMjbKz9fgXWUMrCA0F3C+HI=",
+    }
+)
+
+load("@bookworm//:packages.bzl", "packages")
+
+packages()
