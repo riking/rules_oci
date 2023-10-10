@@ -1,3 +1,0 @@
-load("@bookworm//:packages.bzl", "binaries")
-
-binaries()
