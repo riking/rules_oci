@@ -100,7 +100,7 @@ load("//experimental/apt:packages.bzl", "debian_package_index")
 
 debian_package_index(
     name = "bookworm",
-    architectures = [ "arm64", "amd64" ],
+    architectures = [ "arm64", "amd64", "i386", "s390x" ],
     dists = [ "bookworm" ],
     packages = {
         "libarchive-tools": "3.6.2-1"
@@ -112,5 +112,19 @@ debian_package_index(
 )
 
 load("@bookworm//:packages.bzl", "packages")
-
 packages()
+
+
+
+
+load("//experimental/brew:bottle.bzl", "brew_bottle")
+
+brew_bottle(
+    name = "bottle_gnutar",
+    formula = "gnu-tar"
+)
+
+brew_bottle(
+    name = "bottle_libarchive",
+    formula = "libarchive"
+)
