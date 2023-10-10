@@ -100,7 +100,7 @@ load("//experimental/apt:packages.bzl", "debian_package_index")
 
 debian_package_index(
     name = "bookworm",
-    architectures = [ "arm64", "amd64", "i386", "s390x" ],
+    architectures = [ "arm64", "amd64" ],
     dists = [ "bookworm" ],
     packages = {
         "libarchive-tools": "3.6.2-1"
@@ -111,8 +111,8 @@ debian_package_index(
     }
 )
 
-load("@bookworm//:packages.bzl", "packages")
-packages()
+load("@bookworm//:packages.bzl", "bookworm_arm64_packages")
+bookworm_arm64_packages()
 
 
 
