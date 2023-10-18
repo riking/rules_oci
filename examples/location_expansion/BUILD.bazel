@@ -1,5 +1,5 @@
+load("@aspect_bazel_lib//lib:tar.bzl", "tar")
 load("@container_structure_test//:defs.bzl", "container_structure_test")
-load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("//oci:defs.bzl", "oci_image")
 
 sh_binary(
@@ -7,10 +7,9 @@ sh_binary(
     srcs = ["test.bash"],
 )
 
-pkg_tar(
+tar(
     name = "app",
-    srcs = [":test_sh"],
-    strip_prefix = "/",  # We force the files to have paths embedded inside the tarball.
+    srcs = [":test_sh"]
 )
 
 genrule(

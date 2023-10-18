@@ -26,10 +26,10 @@ def rules_oci_dependencies():
             "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.1.1/bazel-skylib-1.1.1.tar.gz",
         ],
     )
-
+    
     http_archive(
         name = "aspect_bazel_lib",
-        sha256 = "f1c181b910f821072f38ee45bb87db6b56275458c7f832c54c54ba6334119eca",
-        strip_prefix = "bazel-lib-1.32.0",
-        url = "https://github.com/aspect-build/bazel-lib/releases/download/v1.32.0/bazel-lib-v1.32.0.tar.gz",
+        sha256 = "77ba137e23014decc6c54182f5d86d8b6c44f6f4f1add8fc128a8ca4afd26b42",
+        strip_prefix = "bazel-lib-bff5408f613d220673e626d9e167eab542b5603c",
+        url = "https://github.com/aspect-build/bazel-lib/archive/bff5408f613d220673e626d9e167eab542b5603c.tar.gz",
     )
