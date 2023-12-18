@@ -40,14 +40,29 @@ container_import(
 Now that we know it's `gcr.io/distroless/base` we can pull the same base image by adding to WORKSPACE:
 
 ```
+# WORKSPACE
 load("@rules_oci//oci:pull.bzl", "oci_pull")
 
 oci_pull(
     name = "distroless_base",
-    digest = "sha256:ccaef5ee2f1850270d453fdf700a5392534f8d1a8ca2acda391fbb6a06b81c86",
+    # digest version 2023-12-16
+    # TODO(2024-06-10): Update the digest hash and change this TODO to 6 months away.
+    digest = "sha256:6c1e34e2f084fe6df17b8bceb1416f1e11af0fcdb1cef11ee4ac8ae127cb507c",
     image = "gcr.io/distroless/base",
     platforms = ["linux/amd64","linux/arm64"],
 )
+
+# MODULE.bazel
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "distroless_base",
+    image = "gcr.io/distroless/base",
+    platforms = ["linux/amd64","linux/arm64"],
+    # digest version 2023-12-16
+    # TODO(2024-06-10): Update the digest hash and change this TODO to 6 months away.
+    digest = "sha256:6c1e34e2f084fe6df17b8bceb1416f1e11af0fcdb1cef11ee4ac8ae127cb507c",
+)
+use_repo(oci, "distroless_base")
 ```
 
 See more details in the [oci_pull docs](/docs/pull.md)
