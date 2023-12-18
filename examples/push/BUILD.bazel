@@ -1,12 +1,18 @@
 load("@aspect_bazel_lib//lib:expand_template.bzl", "expand_template")
 load("@bazel_skylib//rules:write_file.bzl", "write_file")
-load("//oci:defs.bzl", "oci_image", "oci_image_index", "oci_push")
+load("//oci:defs.bzl", "oci_image", "oci_image_index", "oci_push", "oci_tarball")
 
 oci_image(
     name = "image",
     architecture = "amd64",
     entrypoint = ["/fail"],
     os = "linux",
+)
+
+oci_tarball(
+    name = "tarball",
+    image = ":image",
+    repo_tags = ["my_image:latest"],
 )
 
 oci_push(
@@ -59,7 +65,7 @@ oci_push(
     name = "push_image_index",
     image = ":image_index",
     remote_tags = ":stamped",
-    repository = "index.docker.io/<ORG>/image",
+    repository = "index.docker.io/alexeagle/image",
 )
 
 sh_test(
